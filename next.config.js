@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Edge Runtimeを使用するページのみに設定
   async rewrites() {
-    return [];
+    return [
+      {
+        source: '/api/:path*',
+        destination: '/api/:path*',
+      },
+    ]
   },
   // ポート設定を追加
   webpack: (config, { isServer }) => {
