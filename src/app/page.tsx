@@ -1,6 +1,26 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Image from "next/image";
+import { HelloResponse } from '@/types/api';
 
 export default function Home() {
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/hello')
+        const data: HelloResponse = await response.json()
+        setMessage(data.message)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -49,6 +69,11 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+
+        <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
+          <h1 className="text-4xl font-bold mb-8">Next.js + Hono Demo</h1>
+          <p className="text-xl">API Response: {message}</p>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
