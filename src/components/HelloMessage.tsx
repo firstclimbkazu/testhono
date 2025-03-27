@@ -12,8 +12,8 @@ export async function HelloMessage() {
   
   return (
     <div className="p-4 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-2">メッセージ</h2>
-      <p>{data.message}</p>
+      <h2 className="text-xl font-bold mb-2 text-gray-900">連絡</h2>
+      <p className="text-gray-800">{data.message}</p>
     </div>
   )
 } 

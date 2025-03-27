@@ -10,12 +10,12 @@ export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (
-    <main className="container mx-auto p-4 space-y-8">
-      <Suspense fallback={<div>メッセージを読み込み中...</div>}>
+    <main className="container mx-auto p-4 space-y-8 text-gray-900">
+      <Suspense fallback={<div className="text-gray-900">メッセージを読み込み中...</div>}>
         <HelloMessage />
       </Suspense>
       
-      <Suspense fallback={<div>記事を読み込み中...</div>}>
+      <Suspense fallback={<div className="text-gray-900">記事を読み込み中...</div>}>
         <ArticleList />
       </Suspense>
     </main>
