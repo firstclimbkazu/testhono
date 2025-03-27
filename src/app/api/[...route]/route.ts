@@ -18,7 +18,7 @@ export async function GET(request: Request) {
   // CORSミドルウェアを追加
   app.use('*', cors())
   
-  // ルートの定義
+  // RPCエンドポイントの定義
   app.get('/hello', (c) => {
     return c.json<HelloResponse>({
       message: 'Hello from Hono API!'
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
   // CORSミドルウェアを追加
   app.use('*', cors())
   
-  // ルートの定義
+  // RPCエンドポイントの定義
   app.post('/articles', async (c) => {
     const body = await c.req.json<CreateArticleRequest>()
     return c.json<CreateArticleResponse>({ 

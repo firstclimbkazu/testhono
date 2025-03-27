@@ -2,12 +2,11 @@ import { Suspense } from 'react'
 import { ArticleList } from '@/components/ArticleList'
 import { HelloMessage } from '@/components/HelloMessage'
 
-// Edge Runtimeを有効化
+// Edge Runtimeを使用
 export const runtime = 'edge'
+
 // 動的レンダリングを有効化
 export const dynamic = 'force-dynamic'
-// キャッシュを無効化
-export const fetchCache = 'force-no-store'
 
 export default function Home() {
   return (
