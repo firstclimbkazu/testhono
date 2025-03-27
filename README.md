@@ -131,28 +131,6 @@ src/
 └── types/                  # 型定義
 ```
 
-### APIの追加方法
-
-1. `src/app/api/` ディレクトリに新しいフォルダを作成
-2. `route.ts` ファイルを作成し、以下のテンプレートを使用:
-
-```typescript
-import { NextResponse } from 'next/server'
-import { Hono } from 'hono'
-
-export const runtime = 'edge'
-
-const app = new Hono()
-
-app.get('/', (c) => c.json({ message: 'Your response here' }))
-
-export async function GET() {
-  const res = await app.fetch(new Request('http://localhost/'))
-  const data = await res.json()
-  return NextResponse.json(data)
-}
-```
-
 ## ライセンス
 
 MIT
