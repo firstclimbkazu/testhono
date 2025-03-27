@@ -1,8 +1,14 @@
-import type { Article } from '@/types/api'
-import { getArticlesList } from '@/lib/data'
+import type { Article, ArticlesResponse } from '@/types/api'
+import { client } from '@/utils/api'
 
 export async function ArticleList() {
-  const data = await getArticlesList()
+  const response = await client.articles.$get()
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch articles')
+  }
+
+  const data: ArticlesResponse = await response.json()
   
   return (
     <div className="space-y-4">

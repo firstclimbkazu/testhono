@@ -1,5 +1,9 @@
 import { hc } from 'hono/client'
 import type { AppType } from '@/app/api/routes'
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || ''
-export const client = hc<AppType>(baseUrl) 
+// APIクライアントの設定
+const BASE_URL = typeof window !== 'undefined' 
+  ? window.location.origin 
+  : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+
+export const client = hc<AppType>(`${BASE_URL}/api`) 

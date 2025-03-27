@@ -1,11 +1,19 @@
-import { getHelloMessage } from '@/lib/data'
+import type { HelloResponse } from '@/types/api'
+import { client } from '@/utils/api'
 
 export async function HelloMessage() {
-  const data = await getHelloMessage()
+  const response = await client.hello.$get()
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch hello message')
+  }
+
+  const data: HelloResponse = await response.json()
   
   return (
-    <div className="text-xl font-bold text-center">
-      {data.message}
+    <div className="p-4 bg-white rounded shadow">
+      <h2 className="text-xl font-bold mb-2">メッセージ</h2>
+      <p>{data.message}</p>
     </div>
   )
 } 
